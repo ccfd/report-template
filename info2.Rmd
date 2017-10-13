@@ -11,7 +11,7 @@ output:
   html_document:
     self_contained: no
   word_document: default
-class: Informatyka I
+class: Informatyka II
 ---
 
 ```{r global_options, include=FALSE}
@@ -69,6 +69,8 @@ Układ równań \eqref{uklad} został scałkowany przy pomocy metody Runge-Kutta
 
 # Wyniki
 
+Przeprowadzono symulację dla czterech przypadków: Liniowej i nieliniowej charakterystyki spreżyny, a także z i bez tłumienia.
+
 ```{r echo=FALSE}
 obrazki = function(k1,k2,c,name) {
   par(mar=c(4.1,4.1,0.5,0.5))
@@ -87,28 +89,29 @@ obrazki = function(k1,k2,c,name) {
     lines(x,v,lty=3)
     lines(x,-v,lty=3)
   }
-  plot(tab$T, (tab$V^2)/2 + (k1*tab$X^2)/2+(k1*k2*tab$X^4)/4-(k1/2+k1*k2/4), type="l", xlab="t [s]", ylab="E-E0 [J]")
+#  plot(tab$T, (tab$V^2)/2 + (k1*tab$X^2)/2+(k1*k2*tab$X^4)/4-(k1/2+k1*k2/4), type="l", xlab="t [s]", ylab="E-E0 [J]")
+  plot(tab$T, (tab$V^2)/2 + (k1*tab$X^2)/2+(k1*k2*tab$X^4)/4, type="l", xlab="t [s]", ylab="E [J]", ylim=c(0,7))
 }
 ```
 
 ## Przypadek liniowej sprężyny ($k_1=10$)
 ```{r linear, echo=FALSE, fig.align='center'}
-obrazki(10,0,0,"prog/linear.csv")
+obrazki(10,0,0,"info2_program/linear.csv")
 ```
 
 ## Przypadek nieliniowej sprężyny ($k_1=5\quad k_2=3$)
 ```{r nonlinear, echo=FALSE}
-obrazki(5,3,0,"prog/nonlinear.csv")
+obrazki(5,3,0,"info2_program/nonlinear.csv")
 ```
 
 ## Przypadek liniowej sprężyny z tłumikiem ($k_1=10\quad c=0.3$)
 ```{r linear_dumper, echo=FALSE, fig.align='center'}
-obrazki(10,0,1,"prog/linear_dumper.csv")
+obrazki(10,0,1,"info2_program/linear_dumper.csv")
 ```
 
 ## Przypadek nieliniowej sprężyny z tłumikiem ($k_1=5\quad k_2=3\quad c=0.3$)
 ```{r nonlinear_dumper, echo=FALSE}
-obrazki(5,3,1,"prog/nonlinear_dumper.csv")
+obrazki(5,3,1,"info2_program/nonlinear_dumper.csv")
 ```
 
 # Omówienie wyników
