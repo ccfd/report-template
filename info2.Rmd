@@ -1,0 +1,116 @@
+---
+title: "Układ z nieliniową sprężyną"
+author:
+  - "Stefan Stefański"
+  - "Jan"
+indeks: 123456
+output:
+  pdf_document:
+    keep_tex: yes
+    template: spraw_templ.tex
+  html_document:
+    self_contained: no
+  word_document: default
+class: Informatyka I
+---
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(fig.align='center', warning=FALSE, fig.height = 4.3, dev.args=list(pointsize=10))
+```
+
+# Problem
+```{r scheme, echo=FALSE}
+par(mar=c(4.1,0.5,0.5,0.5))
+plot(NA,xlim=c(-3,3),ylim=c(-1,1),asp=1,xlab="X",ylab="",bty="n",yaxt="n")
+rect(0,-0.5,1,0.5)
+segments(-3,-1,-3,1)
+rect(-3.3,-1,-3,1,density=10,border = NA)
+segments(0.5,-0.5,0.5,-2,lty=2)
+n=10
+lines(cbind(seq(-3,0,len=2*n+4),c(0,0,rep(c(1,-1)/10,n),0,0)+0.2))
+text(-1.5,0.5,"k")
+lines(cbind(c(-3,-1.5,-1.5,-1.5),c(0,0,-0.15,0.15)-0.2))
+lines(cbind(c(-1.6,-1.4,-1.4,0,-1.4,-1.4,-1.6),c(-0.2,-0.2,0,0,0,0.2,0.2)-0.2))
+text(-1.5,-0.6,"c")
+arrows(0.5,0.2,0.2,0.2,length = 0.1)
+text(1.1,0.2,"Fs=-kx",adj=c(0,0.5))
+arrows(0.5,-0.2,0.3,-0.2,length = 0.1)
+text(1.1,-0.2,"Ft=-cv",adj=c(0,0.5))
+arrows(0.5,0,0.8,0,length = 0.1)
+text(1.1,0,"v",adj=c(0,0.5))
+```
+
+Charakterystyka nieliniowa sprężyny: $k=k_1(1+k_2x^2)$
+
+# Równania ruchu
+
+Siła wywierana na masę przez sprężynę:
+\[F_s = -kx = -k_1(1+k_2x^2)x\]
+Siła wywierana na masę przez tłumik:
+\[F_t = -c\dot x\]
+Równanie ruchu:
+\[m\ddot x = F_s + F_t = -k_1(1+k_2x^2)x-c\dot x\]
+Równanie to można przekształcić na układ równań pierwszego rzędu:
+\begin{equation}\label{uklad}\begin{cases}
+\dot x &= y\\
+\dot y &= -k_1(1+k_2x^2)x - cy
+\end{cases}\end{equation}
+
+Energia kinetyczna:
+\[E_k = \frac{m\dot x^2}{2}\]
+Energia potencjalna sprężyny:
+\[E_p = \int k_1(1+k_2x^2)x\cdot dx = \int \left(k_1x+k_1k_2x^3\right)dx = \frac{k_1x^2}{2}+\frac{k_1k_2x^4}{4}\]
+Całkowita energia mechaniczna:
+\[E = \frac{m\dot x^2}{2} + \frac{k_1x^2}{2}+\frac{k_1k_2x^4}{4}\]
+
+# Metoda Obliczeniowa
+
+Układ równań \eqref{uklad} został scałkowany przy pomocy metody Runge-Kutta 4-tego rzędu. Czas całkowania: $10s$. Krok całkowania: $\frac{10s}{1500}$.
+
+# Wyniki
+
+```{r echo=FALSE}
+obrazki = function(k1,k2,c,name) {
+  par(mar=c(4.1,4.1,0.5,0.5))
+  tab = read.csv(name)
+  plot(tab$T,tab$X,xlab="t [s]",ylab="x [m]",type="l",lwd=2)
+  abline(h=0,lty=2)
+  i = which(diff(tab$X>0) != 0)
+  abline(v=tab$T[i],lty=3)
+  plot(tab$X, tab$V, xlab="x [m]", ylab="v [m/s]", type="l", lwd=2, xlim=c(-1,1), ylim=c(-4,4))
+  abline(h=0,lty=2)
+  abline(v=0,lty=2)
+  x = par("usr")
+  x = seq(x[1],x[2],len=300)
+  for (E in 1:10) {
+    v = sqrt(2*(E - (k1*x^2)/2-(k1*k2*x^4)/4))
+    lines(x,v,lty=3)
+    lines(x,-v,lty=3)
+  }
+  plot(tab$T, (tab$V^2)/2 + (k1*tab$X^2)/2+(k1*k2*tab$X^4)/4-(k1/2+k1*k2/4), type="l", xlab="t [s]", ylab="E-E0 [J]")
+}
+```
+
+## Przypadek liniowej sprężyny ($k_1=10$)
+```{r linear, echo=FALSE, fig.align='center'}
+obrazki(10,0,0,"prog/linear.csv")
+```
+
+## Przypadek nieliniowej sprężyny ($k_1=5\quad k_2=3$)
+```{r nonlinear, echo=FALSE}
+obrazki(5,3,0,"prog/nonlinear.csv")
+```
+
+## Przypadek liniowej sprężyny z tłumikiem ($k_1=10\quad c=0.3$)
+```{r linear_dumper, echo=FALSE, fig.align='center'}
+obrazki(10,0,1,"prog/linear_dumper.csv")
+```
+
+## Przypadek nieliniowej sprężyny z tłumikiem ($k_1=5\quad k_2=3\quad c=0.3$)
+```{r nonlinear_dumper, echo=FALSE}
+obrazki(5,3,1,"prog/nonlinear_dumper.csv")
+```
+
+# Omówienie wyników
+
+
