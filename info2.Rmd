@@ -77,7 +77,7 @@ Całkowita energia mechaniczna:
 
 # Metoda Obliczeniowa
 
-Układ równań \eqref{uklad} został scałkowany przy pomocy metody Runge-Kutta 4-tego rzędu. Czas całkowania: $10s$. Krok całkowania: $\frac{10s}{1500}$.
+Układ równań został scałkowany przy pomocy metody Runge-Kutta 4-tego rzędu. Czas całkowania: $10s$. Krok całkowania: $\frac{10s}{1500}$.
 
 # Wyniki
 
