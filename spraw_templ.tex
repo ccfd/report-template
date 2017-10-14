@@ -1,9 +1,10 @@
 \documentclass[12pt]{sprawozdanie}
 
 \title{$title$}
-\author{$author$}
+$if(author)$
+\author{$for(author)$$author.name$ $author.nr$$sep$\\$endfor$}
+$endif$
 \class{$class$}
-\indeks{$indeks$}
 
 \begin{document}
 \maketitle
