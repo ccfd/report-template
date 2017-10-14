@@ -1,11 +1,10 @@
 ---
-title: "Układ z nieliniową sprężyną"
+title: "Układ ze sprężyną o nieliniowej charakterystyce"
 author:
-  - name: "Stefan Stefański"
-    nr: 123456
-  - name: "Jan"
-    nr: 123456
-class: Informatyka II
+- name: Jan Adamski
+  nr: 123456
+- name: Adam Jański
+  nr: 123458
 output:
   pdf_document:
     keep_tex: yes
@@ -13,6 +12,7 @@ output:
   html_document:
     self_contained: no
   word_document: default
+class: Informatyka II
 ---
 
 ```{r global_options, include=FALSE}
@@ -99,13 +99,14 @@ par(mar=c(4.1,4.1,0.5,0.5))
 ```
 
 Liniowa sprężyna charakteryzuje się liniową zależnością pomiędzy wychyleniem a siłą:
+
 ```{r linear-characteristic}
 x=seq(-1.5,1.5,len=200)
 plot(x,x*k1,type="l",xlab="x [m]",ylab="F [N]")
 abline(h=0,v=0,lty=2)
 ```
-
 Rozwiązanie numeryczne tego układu jest zgodne z oczekiwanym sinusoidalnym kształtem:
+
 ```{r linear-solution}
   plot(tab$T,tab$X,xlab="t [s]",ylab="x [m]",type="l",lwd=2)
   abline(h=0,lty=2)
@@ -117,6 +118,7 @@ Dla warunków początkowych $x(0)=1\land \dot x(0)=1$ mamy:
 \[x(t) = \cos{\sqrt{\frac{k_1}{m}}t}\]
 
 Wizualnie rozwiązanie numeryczne pokryłoby się z analitycznym, możemy jednak zwizualizować błąd względny ($\left|\frac{x_n-x_a}{x_a}\right|$) w skali logaryczmicznej:
+
 ```{r linear-error}
   tab$Xa=cos(sqrt(k1)*tab$T)
   plot(tab$T,abs((tab$X-tab$Xa)/tab$Xa),xlab="t [s]",ylab="Błąd względny [%]",type="l",lwd=2,log="y")
@@ -140,6 +142,7 @@ Zamknięta ścieżka w przestrzeni fazowej sugeruje, że układ nie traci energi
 ```
 
 Zależność siły od wychylenia dla omawianej nieliniowej sprężyny:
+
 ```{r nonlinear-characteristic}
 x=seq(-1.5,1.5,len=200)
 plot(x,x*(k1+k1*k2*x^2),type="l",xlab="x [m]",ylab="F [N]")
@@ -148,6 +151,7 @@ abline(0,k1,lty=3)
 ```
 
 Rozwiązanie numeryczne dla nieliniowej sprężyny ma "ostrzej" zakończone maxima i minima. Jest to związane z wyższą siłą siłą przy dużych wychyleniach niż w przypadku liniowej sprężyny.
+
 ```{r nonlinear-solution}
   plot(tab$T,tab$X,xlab="t [s]",ylab="x [m]",type="l",lwd=2)
   abline(h=0,lty=2)
@@ -160,6 +164,7 @@ plot(tab$X, tab$V, xlab="x [m]", ylab="v [m/s]", type="l", lwd=2, xlim=c(-1,1), 
 ```
 
 ## Przypadek liniowej sprężyny z tłumikiem ($k_1=10\quad c=0.3$)
+
 ```{r}
   k1=10
   k2=0
@@ -169,6 +174,7 @@ plot(tab$X, tab$V, xlab="x [m]", ylab="v [m/s]", type="l", lwd=2, xlim=c(-1,1), 
 ```
 
 Rozwiązanie numeryczne dla liniowej sprężyny z tłumikiem, ma wykładniczy spadek. W związku z tym, że częstotliwość drgania układu liniowego nie zależy od wychylenia, odstępy pomiędzy momentami przejścia przez zero są ciągle stałe.
+
 ```{r linear-dump-solution}
   plot(tab$T,tab$X,xlab="t [s]",ylab="x [m]",type="l",lwd=2)
   abline(h=0,lty=2)
@@ -191,6 +197,7 @@ plot(tab$T, tab$E, xlab="x [m]", ylab="E [J]", type="l", lwd=2, ylim=c(0,7))
 ```
 
 ## Przypadek nieliniowej sprężyny z tłumikiem ($k_1=5\quad k_2=3\quad c=0.3$)
+
 ```{r}
   k1=5
   k2=3
@@ -200,6 +207,7 @@ plot(tab$T, tab$E, xlab="x [m]", ylab="E [J]", type="l", lwd=2, ylim=c(0,7))
 ```
 
 Rozwiązanie numeryczne dla nie-liniowej sprężyny z tłumikiem, ma także wykładniczy spadek. Dla nieliniowej prężyny cześtotliwość zmienia się wraz z maksymalnym wychyleniem. Dlatego odstępy pomiędzy przejściami przez zero będą się wydłużać.
+
 ```{r nonlinear-dump-solution}
   plot(tab$T,tab$X,xlab="t [s]",ylab="x [m]",type="l",lwd=2)
   abline(h=0,lty=2)
@@ -212,6 +220,7 @@ plot(tab$X, tab$V, xlab="x [m]", ylab="v [m/s]", type="l", lwd=2, xlim=c(-1,1), 
 ```
 
 Tak jak w poprzednim przypadku, energia spada w czasie:
+
 ```{r nonlinear-dump-energy}
 plot(tab$T, tab$E, xlab="x [m]", ylab="E [J]", type="l", lwd=2, ylim=c(0,7))
 ```
