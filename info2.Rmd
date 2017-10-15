@@ -4,7 +4,7 @@ author:
 - name: Jan Adamski
   nr: 123456
 - name: Adam Jański
-  nr: 123458
+  nr: 654321
 output:
   pdf_document:
     keep_tex: yes
