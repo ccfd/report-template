@@ -1,0 +1,34 @@
+#!/bin/bash
+
+set -e
+
+NAME=$1
+shift
+
+if test -z "$1"
+then
+	echo "no name in pack."
+	exit -1;
+fi
+
+
+function on_exit {
+	set +e
+	git checkout -f master
+	git checkout .gitignore
+}
+
+trap on_exit EXIT
+
+
+git branch -f $NAME master
+git checkout $NAME
+git rm --cached -r .
+test -f ".gitignore" && rm .gitignore
+git add "$@"
+git commit -m "Selecting files for to $NAME"
+if git remote get-url deploy >/dev/null 2>&1
+then
+	git push -f -u deploy $NAME
+fi
+
