@@ -1,0 +1,16 @@
+language: r
+sudo: false
+cache: packages
+env:
+  global:
+r_github_packages:
+  - rstudio/rmarkdown
+install:
+  - R -e "install.packages('devtools')"
+  - R -e "devtools::install_github('rstudio/rmarkdown')"
+branches:
+  only:
+    - master
+script:
+  - make
+after_success:
