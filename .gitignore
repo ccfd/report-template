@@ -1,0 +1,11 @@
+*.aux
+*.docx
+*.html
+*.log
+*.out
+/*.pdf
+/*.tex
+*_files/
+*_program/*.o
+*_program/main
+*~
