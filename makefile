@@ -1,5 +1,5 @@
 
-all : info2.pdf info2.docx info2.html
+all : info2.docx info2.html info2.pdf
 
 
 %.pdf %.tex : %.Rmd
