@@ -3,9 +3,10 @@
 
 \LoadClass[12pt,twoside]{article}
 \RequirePackage{lmodern}
-\RequirePackage[utf8]{inputenc}
-\RequirePackage[OT4]{fontenc}
 \RequirePackage{amsmath}
+\RequirePackage{fixltx2e}
+\RequirePackage[T1]{fontenc}
+\RequirePackage[utf8]{inputenc}
 \RequirePackage{graphics}
 \RequirePackage{xcolor}
 \RequirePackage{tikz}
