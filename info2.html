@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Układ ze sprężyną o nieliniowej charakterystyce</title>
+
+<script src="info2_files/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="info2_files/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="info2_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="info2_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="info2_files/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="info2_files/navigation-1.1/tabsets.js"></script>
+<link href="info2_files/highlightjs-1.1/default.css" rel="stylesheet" />
+<script src="info2_files/highlightjs-1.1/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Układ ze sprężyną o nieliniowej charakterystyce</h1>
+<h4 class="author"><em>Jan Adamski</em></h4>
+<h4 class="author"><em>Adam Jański</em></h4>
+
+</div>
+
+
+<div id="problem" class="section level1">
+<h1>Problem</h1>
+<p><img src="info2_files/figure-html/scheme-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Charakterystyka nieliniowa sprężyny: <span class="math inline">\(k=k_1(1+k_2x^2)\)</span></p>
+</div>
+<div id="rownania-ruchu" class="section level1">
+<h1>Równania ruchu</h1>
+Siła wywierana na masę przez sprężynę: <span class="math display">\[F_s = -kx = -k_1(1+k_2x^2)x\]</span> Siła wywierana na masę przez tłumik: <span class="math display">\[F_t = -c\dot x\]</span> Równanie ruchu: <span class="math display">\[m\ddot x = F_s + F_t = -k_1(1+k_2x^2)x-c\dot x\]</span> Równanie to można przekształcić na układ równań pierwszego rzędu:
+<span class="math display">\[\begin{equation}\label{uklad}\begin{cases}
+\dot x &amp;= y\\
+\dot y &amp;= \frac{1}{m}\left(-k_1(1+k_2x^2)x - cy\right)
+\end{cases}\end{equation}\]</span>
+<p>Energia kinetyczna: <span class="math display">\[E_k = \frac{m\dot x^2}{2}\]</span> Energia potencjalna sprężyny: <span class="math display">\[E_p = \int k_1(1+k_2x^2)x\cdot dx = \int \left(k_1x+k_1k_2x^3\right)dx = \frac{k_1x^2}{2}+\frac{k_1k_2x^4}{4}\]</span> Całkowita energia mechaniczna: <span class="math display">\[E = \frac{m\dot x^2}{2} + \frac{k_1x^2}{2}+\frac{k_1k_2x^4}{4}\]</span></p>
+<p><strong>Uwaga:</strong> bez straty ogólności, w dalszej części pracy będziemy przyjmować <span class="math inline">\(m=1\)</span>.</p>
+</div>
+<div id="metoda-obliczeniowa" class="section level1">
+<h1>Metoda Obliczeniowa</h1>
+<p>Układ równań został scałkowany przy pomocy metody Runge-Kutta 4-tego rzędu. Czas całkowania: <span class="math inline">\(10s\)</span>. Krok całkowania: <span class="math inline">\(\frac{10s}{1500}\)</span>.</p>
+</div>
+<div id="wyniki" class="section level1">
+<h1>Wyniki</h1>
+<p>Przeprowadzono symulację dla czterech przypadków: Liniowej i nieliniowej charakterystyki spreżyny, a także z i bez tłumienia.</p>
+<div id="przypadek-liniowej-sprezyny-k_110" class="section level2">
+<h2>Przypadek liniowej sprężyny (<span class="math inline">\(k_1=10\)</span>)</h2>
+<p>Liniowa sprężyna charakteryzuje się liniową zależnością pomiędzy wychyleniem a siłą:</p>
+<p><img src="info2_files/figure-html/linear-characteristic-1.png" width="480" style="display: block; margin: auto;" /> Rozwiązanie numeryczne tego układu jest zgodne z oczekiwanym sinusoidalnym kształtem:</p>
+<p><img src="info2_files/figure-html/linear-solution-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Dla tak prostego układu <span class="math inline">\(m\ddot x + k_1x = 0\)</span>, możemy wyznaczyć rozwiązanie analityczne przez podstawienie <span class="math inline">\(x=e^{rt}\)</span>. Otrzymane rozwiązanie ogólne (po usunięciu części urojonej) ma postać: <span class="math display">\[x(t) = A \cos{\sqrt{\frac{k_1}{m}}t} + B \sin{\sqrt{\frac{k_1}{m}}t}\]</span> Dla warunków początkowych <span class="math inline">\(x(0)=1\land \dot x(0)=1\)</span> mamy: <span class="math display">\[x(t) = \cos{\sqrt{\frac{k_1}{m}}t}\]</span></p>
+<p>Wizualnie rozwiązanie numeryczne pokryłoby się z analitycznym, możemy jednak zwizualizować błąd względny (<span class="math inline">\(\left|\frac{x_n-x_a}{x_a}\right|\)</span>) w skali logaryczmicznej:</p>
+<p><img src="info2_files/figure-html/linear-error-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>W przestrzeni fazowej (<span class="math inline">\(x-v\)</span>) rozwiązanie jest zamkniętą elipsą. Nie ma tu sensu mówienie o jej proporcjach, poniewaz obie osie mają różne skale.</p>
+<p><img src="info2_files/figure-html/linear-phase-space-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Zamknięta ścieżka w przestrzeni fazowej sugeruje, że układ nie traci energii.</p>
+</div>
+<div id="przypadek-nieliniowej-sprezyny-k_15quad-k_23" class="section level2">
+<h2>Przypadek nieliniowej sprężyny (<span class="math inline">\(k_1=5\quad k_2=3\)</span>)</h2>
+<p>Zależność siły od wychylenia dla omawianej nieliniowej sprężyny:</p>
+<p><img src="info2_files/figure-html/nonlinear-characteristic-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Rozwiązanie numeryczne dla nieliniowej sprężyny ma “ostrzej” zakończone maxima i minima. Jest to związane z wyższą siłą siłą przy dużych wychyleniach niż w przypadku liniowej sprężyny.</p>
+<p><img src="info2_files/figure-html/nonlinear-solution-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>W przestrzeni fazowej, trajektoria nadal jest zamkniętą pętlą, lecz nie jest już elipsą:</p>
+<p><img src="info2_files/figure-html/nonlinear-phase-1.png" width="480" style="display: block; margin: auto;" /></p>
+</div>
+<div id="przypadek-liniowej-sprezyny-z-tumikiem-k_110quad-c0.3" class="section level2">
+<h2>Przypadek liniowej sprężyny z tłumikiem (<span class="math inline">\(k_1=10\quad c=0.3\)</span>)</h2>
+<p>Rozwiązanie numeryczne dla liniowej sprężyny z tłumikiem, ma wykładniczy spadek. W związku z tym, że częstotliwość drgania układu liniowego nie zależy od wychylenia, odstępy pomiędzy momentami przejścia przez zero są ciągle stałe.</p>
+<p><img src="info2_files/figure-html/linear-dump-solution-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>W przestrzeni fazowej, trajektoria nie jest już zamknięta i schodzi spiralnie do zera:</p>
+<p><img src="info2_files/figure-html/linear-dump-phase-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Tłumik wprowadza element niezachowawczy do układu. Powoduje to spadek energii. Łatwo ten efekt zobaczyć wymnażając oryginalny układ przez <span class="math inline">\(\dot x\)</span>: <span class="math display">\[\dot xm\ddot x + \dot xc\dot x + \dot xk_1x=0\]</span> Po przekształceniu mamy: <span class="math display">\[\frac{d}{dt}\left(\frac{m\dot x^2}{2}+\frac{k_1 x^2}{2}\right)=-c\dot x^2\]</span> Na wykresie całkowitej energii widać wyraźnie spadek energii, który następuje w momentach wysokiej prędkości.</p>
+<p><img src="info2_files/figure-html/linear-dump-energy-1.png" width="480" style="display: block; margin: auto;" /></p>
+</div>
+<div id="przypadek-nieliniowej-sprezyny-z-tumikiem-k_15quad-k_23quad-c0.3" class="section level2">
+<h2>Przypadek nieliniowej sprężyny z tłumikiem (<span class="math inline">\(k_1=5\quad k_2=3\quad c=0.3\)</span>)</h2>
+<p>Rozwiązanie numeryczne dla nie-liniowej sprężyny z tłumikiem, ma także wykładniczy spadek. Dla nieliniowej prężyny cześtotliwość zmienia się wraz z maksymalnym wychyleniem. Dlatego odstępy pomiędzy przejściami przez zero będą się wydłużać.</p>
+<p><img src="info2_files/figure-html/nonlinear-dump-solution-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>W przestrzeni fazowej, trajektoria jest nieeliptyczną spiralą. Dodatkowo można zauważyć że gdy wychylenie się zmniejsza, trajektora robi się coraz bardziej eliptyczna:</p>
+<p><img src="info2_files/figure-html/nonlinear-dump-phase-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Tak jak w poprzednim przypadku, energia spada w czasie:</p>
+<p><img src="info2_files/figure-html/nonlinear-dump-energy-1.png" width="480" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="omowienie-wynikow" class="section level1">
+<h1>Omówienie wyników</h1>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
