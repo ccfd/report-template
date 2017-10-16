@@ -2,6 +2,7 @@
 \ProvidesClass{sprawozdanie}
 
 \LoadClass[12pt,twoside]{article}
+\RequirePackage{lmodern}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[OT4]{fontenc}
 \RequirePackage{amsmath}
