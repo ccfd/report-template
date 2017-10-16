@@ -20,20 +20,9 @@
 
 \newcommand{\class}[1]{\gdef\@class{#1}}%
 \newcommand{\@class}{\@latex@warning@no@line{No \noexpand\class given}}
-\newcommand{\indeks}[1]{\gdef\@indeks{#1}}%
-\newcommand{\@indeks}{\@latex@warning@no@line{No \noexpand\indeks given}}
+%\newcommand{\indeks}[1]{\gdef\@indeks{#1}}%
+%\newcommand{\@indeks}{\@latex@warning@no@line{No \noexpand\indeks given}}
 
-
-\renewcommand{\maketitle}{%
-\begin{center}
-\begin{tabular}{rl}
-Przedmiot: & \@class\\
-Tytuł: & \@title\\
-Autor: & \@author\\
-Nr indeksu: & \@indeks
-\end{tabular}
- \end{center}
-}
 
 
 \renewcommand{\maketitle}{%
@@ -43,7 +32,7 @@ Nr indeksu: & \@indeks
 \input{znak.tex}\\\vfill
 {\fontsize{22}{50}\fontseries{bx}\selectfont\@class}\\[10pt]
 {\fontsize{30}{40}\selectfont\sc\@title}\\[10pt]\vfill
-{\fontsize{14}{50}\fontseries{b}\selectfont\@author\fontseries{n}\selectfont\ (nr indeksu: \@indeks)}
+{\fontsize{14}{50}\fontseries{b}\selectfont\@author\fontseries{n}\selectfont}
 \end{center}
 \end{titlepage}
 }
