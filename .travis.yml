@@ -18,3 +18,4 @@ after_success:
   - tools/pack auto/latex info2.tex info2_files/figure-latex/* sprawozdanie.cls znak.tex
   - tools/pack auto/html info2.html info2_files/*
   - tools/pack auto/word info2.docx
+  - tools/pack auto/pdf info2.pdf

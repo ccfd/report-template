@@ -7,10 +7,11 @@ W tym repozytorium jest zamieszczony format sprawozdania wraz z przykładowym sp
 
 Przykładowy raport z info2 w formacie:
 
-- (rmarkdown (oryginał))https://github.com/ccfd/report-template/archive/master.zip]
-- (LaTeX)[https://github.com/ccfd/report-template/archive/auto/latex.zip]
-- (HTML)[https://github.com/ccfd/report-template/archive/auto/html.zip]
-- (Word/OpenOffice)[https://github.com/ccfd/report-template/blob/auto/word/info2.docx?raw=true]
+- [rmarkdown (oryginał)](https://github.com/ccfd/report-template/archive/master.zip)
+- [PDF](https://github.com/ccfd/report-template/blob/auto/pdf/info2.pdf?raw=true)
+- [LaTeX](https://github.com/ccfd/report-template/archive/auto/latex.zip)
+- [HTML](https://github.com/ccfd/report-template/archive/auto/html.zip)
+- [Word/OpenOffice](https://github.com/ccfd/report-template/blob/auto/word/info2.docx?raw=true)
 
 ## Format sprawozdania dla LaTeX
 
