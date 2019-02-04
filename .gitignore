@@ -3,6 +3,8 @@
 *.html
 *.log
 *.out
+*.gz
+*.bak
 /*.pdf
 /*.tex
 *_files/
