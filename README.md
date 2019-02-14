@@ -3,7 +3,7 @@ CCFD Report Template
 
 # Polski
 
-W tym repozytorium jest zamieszczony format sprawozdania wraz z przykładowym sprawozdaniem.
+W tym repozytorium zamieszczony jest format sprawozdania wraz z przykładowym sprawozdaniem.
 
 Przykładowy raport z info2 w formacie:
 
@@ -22,11 +22,13 @@ Piszcząc raport w LaTeX wystarczy w preabule wpisać:
 \documentclass[12pt]{sprawozdanie}
 
 \title{Tytuł}
-\author{Autor (nr indeksu}
+\author{Autor nr indeksu}
 \class{Nazwa przedmiotu}
+\deadline{Termin oddania}
+\instruktor{Prowadzący}
 ```
 
 ## R-Markdown
 
-W repozytorium zamieszczony jest przykładowy raport z Info2 w formacie `rmarkdown`. Format ten pozwala na automatyczną generacje wykresów i umiesczanie ich w tekście, a także na generowanie wynikowego raportu w różnych formatach (pdf/html/word).
-
+W repozytorium zamieszczony jest przykładowy raport z Info2 w formacie `rmarkdown`.
+Format ten pozwala na automatyczną generację wykresów i umieszczanie ich w tekście, a także na generowanie wynikowego raportu w różnych formatach (pdf/html/word).

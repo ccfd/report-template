@@ -1,10 +1,12 @@
 \documentclass[12pt]{sprawozdanie}
 
+\class{$class$}
 \title{$title$}
 $if(author)$
-\author{$for(author)$$author.name$ $author.nr$$sep$\\$endfor$}
+\author{$for(author)$\textbf{$author.name$} $author.nr$$sep$\\$endfor$}
 $endif$
-\class{$class$}
+\instructor{$instructor$}
+\deadline{$deadline$}
 
 \begin{document}
 \maketitle

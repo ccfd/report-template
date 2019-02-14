@@ -1,7 +1,7 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{sprawozdanie}
 
-\LoadClass[12pt,twoside]{article}
+\LoadClass[12pt, twoside]{article}
 \RequirePackage{lmodern}
 \RequirePackage{amsmath}
 \RequirePackage{fixltx2e}
@@ -11,7 +11,7 @@
 \RequirePackage{xcolor}
 \RequirePackage{tikz}
 \RequirePackage{hyperref}
-\RequirePackage[margin=2cm]{geometry}
+\RequirePackage[margin = 2cm]{geometry}
 \RequirePackage{fancyhdr}
 
 \DeclareOption{red}{\renewcommand{\headlinecolor}{\color{slcolor}}}
@@ -20,10 +20,15 @@
 
 \newcommand{\class}[1]{\gdef\@class{#1}}%
 \newcommand{\@class}{\@latex@warning@no@line{No \noexpand\class given}}
+
 %\newcommand{\indeks}[1]{\gdef\@indeks{#1}}%
 %\newcommand{\@indeks}{\@latex@warning@no@line{No \noexpand\indeks given}}
 
+\newcommand{\deadline}[1]{\gdef\@deadline{Data oddania: \textbf{#1}}}%
+\newcommand{\@deadline}{\@latex@warning@no@line{No \noexpand\deadline given}}
 
+\newcommand{\instructor}[1]{\gdef\@instructor{Prowadzący: #1}}%
+\newcommand{\@instructor}{\@latex@warning@no@line{No \noexpand\instructor given}}
 
 \renewcommand{\maketitle}{%
 \begin{titlepage}
@@ -32,16 +37,18 @@
 \input{znak.tex}\\\vfill
 {\fontsize{22}{50}\fontseries{bx}\selectfont\@class}\\[10pt]
 {\fontsize{30}{40}\selectfont\sc\@title}\\[10pt]\vfill
-{\fontsize{14}{50}\fontseries{b}\selectfont\@author\fontseries{n}\selectfont}
+{\fontsize{22}{40}\selectfont\@author\fontseries{n}\selectfont}\\\vfill
 \end{center}
+{\fontsize{18}{20}\selectfont\@instructor\fontseries{n}\selectfont}\\[10pt]
+{\fontsize{18}{20}\selectfont\@deadline\fontseries{n}\selectfont}
 \end{titlepage}
 }
 
 \fancyhf{}
 %\fancyhead[RE]{\nouppercase{\scshape \leftmark}}
 %\fancyhead[LO]{\nouppercase{\scshape \rightmark}}
-\fancyhead[L]{\@class}
+\fancyhead[LE]{\@class}
+\fancyhead[LO]{\@title}
 \fancyhead[R]{\@author}
 \fancyfoot[LO,RE]{\thepage}
-\fancyhead[R]{\@author}
 \pagestyle{fancy}

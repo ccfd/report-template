@@ -13,6 +13,8 @@ output:
     self_contained: no
   word_document: default
 class: Informatyka II
+deadline: 01.06.2019 r.
+instructor: Jakiś Ktoś
 ---
 
 ```{r global_options, include=FALSE}
@@ -27,7 +29,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Problem
+# Opis problemu
 ```{r scheme}
 # Schemat masy na sprężynce
 par(mar=c(4.1,0.5,0.5,0.5))
@@ -81,7 +83,7 @@ Układ równań został scałkowany przy pomocy metody Runge-Kutta 4-tego rzędu
 
 # Wyniki
 
-Przeprowadzono symulację dla czterech przypadków: Liniowej i nieliniowej charakterystyki spreżyny, a także z i bez tłumienia.
+Przeprowadzono symulację dla czterech przypadków: Liniowej i nieliniowej charakterystyki sprężyny, a także z i bez tłumienia.
 
 ```{r}
 # Wszystkie wykresy bez górnego i prawego marginesu
@@ -117,14 +119,14 @@ Dla tak prostego układu $m\ddot x + k_1x = 0$, możemy wyznaczyć rozwiązanie 
 Dla warunków początkowych $x(0)=1\land \dot x(0)=1$ mamy:
 \[x(t) = \cos{\sqrt{\frac{k_1}{m}}t}\]
 
-Wizualnie rozwiązanie numeryczne pokryłoby się z analitycznym, możemy jednak zwizualizować błąd względny ($\left|\frac{x_n-x_a}{x_a}\right|$) w skali logaryczmicznej:
+Wizualnie rozwiązanie numeryczne pokryłoby się z analitycznym, możemy jednak zwizualizować błąd względny ($\left|\frac{x_n-x_a}{x_a}\right|$) w skali logarytmicznej:
 
 ```{r linear-error}
   tab$Xa=cos(sqrt(k1)*tab$T)
   plot(tab$T,abs((tab$X-tab$Xa)/tab$Xa),xlab="t [s]",ylab="Błąd względny [%]",type="l",lwd=2,log="y")
 ```
 
-W przestrzeni fazowej ($x-v$) rozwiązanie jest zamkniętą elipsą. Nie ma tu sensu mówienie o jej proporcjach, poniewaz obie osie mają różne skale.
+W przestrzeni fazowej ($x-v$) rozwiązanie jest zamkniętą elipsą. Nie ma tu sensu mówienie o jej proporcjach, ponieważ obie osie mają różne skale.
 
 ```{r linear-phase-space}
 plot(tab$X, tab$V, xlab="x [m]", ylab="v [m/s]", type="l", lwd=2, xlim=c(-1,1), ylim=c(-4,4))
@@ -206,14 +208,14 @@ plot(tab$T, tab$E, xlab="x [m]", ylab="E [J]", type="l", lwd=2, ylim=c(0,7))
   tab$E = (tab$V^2)/2 + (k1*tab$X^2)/2+(k1*k2*tab$X^4)/4
 ```
 
-Rozwiązanie numeryczne dla nie-liniowej sprężyny z tłumikiem, ma także wykładniczy spadek. Dla nieliniowej prężyny cześtotliwość zmienia się wraz z maksymalnym wychyleniem. Dlatego odstępy pomiędzy przejściami przez zero będą się wydłużać.
+Rozwiązanie numeryczne dla nie-liniowej sprężyny z tłumikiem, ma także wykładniczy spadek. Dla nieliniowej sprężyny częstotliwość zmienia się wraz z maksymalnym wychyleniem. Dlatego odstępy pomiędzy przejściami przez zero będą się wydłużać.
 
 ```{r nonlinear-dump-solution}
   plot(tab$T,tab$X,xlab="t [s]",ylab="x [m]",type="l",lwd=2)
   abline(h=0,lty=2)
 ```
 
-W przestrzeni fazowej, trajektoria jest nieeliptyczną spiralą. Dodatkowo można zauważyć że gdy wychylenie się zmniejsza, trajektora robi się coraz bardziej eliptyczna:
+W przestrzeni fazowej, trajektoria jest nieeliptyczną spiralą. Dodatkowo można zauważyć że gdy wychylenie się zmniejsza, trajektoria robi się coraz bardziej eliptyczna:
 
 ```{r nonlinear-dump-phase}
 plot(tab$X, tab$V, xlab="x [m]", ylab="v [m/s]", type="l", lwd=2, xlim=c(-1,1), ylim=c(-4,4))
