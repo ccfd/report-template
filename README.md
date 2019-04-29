@@ -25,7 +25,7 @@ Piszcząc raport w LaTeX wystarczy w preabule wpisać:
 \author{Autor nr indeksu}
 \class{Nazwa przedmiotu}
 \deadline{Termin oddania}
-\instruktor{Prowadzący}
+\instructor{Prowadzący}
 ```
 
 ## R-Markdown
